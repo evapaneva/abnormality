@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login page</title>
+<style>
+	
+	div.form{
+	    display: block;
+	    text-align: center;
+	}
+	
+	form{
+		margin-top: 50px;
+		display: inline-block;
+		margin-left: auto;
+    	margin-right: auto;
+    	text-align: left;
+	}
+	
+	.container{
+		width: 350px;
+		border-width: 2px 2px 2px 2px;
+		margin-left: auto;
+	}
+	
+</style>
+</head>
+
+<body style="overflow: hidden" oncontextmenu="return false">
+<div class="container" style="display: center; margin-top: 200px;">
+<form name="loginForm" class="form-horizontal" method="POST" th:action="@{/login}" onsubmit="return validateForm()">
+	<div class="form-group">
+		<label for="username" > Username: </label>
+		<input type="text" name="username" required> <br>
+	</div>
+	<div class="form-group">
+		<label for="password"> Password: </label>
+		<input type="password" name="password" required> <br>
+	</div>
+	<input type="submit" style="margin-left: 90px; margin-top: 10px;" value="Login" class="btn btn-default">
+</form>
+
+</div>
+
+<script>
+	function validateForm() {
+	    var username = document.forms["loginForm"]["username"].value;
+	    var password = document.forms["loginForm"]["password"].value;
+	    if (username == "" || password == "") {
+	        alert("Please fill in all fields.");
+	        return false;
+	    }
+	}
+	
+</script>
+</body>
+</html>

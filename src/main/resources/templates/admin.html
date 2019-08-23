@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin page</title>
+</head>
+<body>
+<form method="get" th:action="@{/register}"> 
+	<input type="submit" class="btn btn-default" value="Register" >
+</form>
+<br><br>
+<form method="get" th:action="@{/add}"> 
+	<input type="submit" class="btn btn-default" value="Add new abnormality" >
+</form>
+<form method="get" th:action="@{/search}"> 
+	<input type="submit" class="btn btn-default" value="Search abnormality" >
+</form>
+</body>
+</html>

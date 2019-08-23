@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+<title>Register page</title>
+<style>
+	label {
+		color: black;
+		float: left;
+	}
+
+	body
+	.container {
+		align-self: center;
+		padding: 10px;
+		margin: 50px;
+		background-image: url(bg.png);
+	}
+	
+	#registerForm {
+		padding: 5px;
+	}
+
+	.registerbtn {
+		align: center;
+		color: white;
+		padding: 16px 20px;
+		margin: 8px 0;
+		width: 250px;
+	}
+
+	body {
+	    text-align: center;
+	}
+	form {
+	    display: inline-block;
+	}
+</style>
+</head>
+
+<body oncontextmenu="return false">
+	<div class="container">
+		<form id="registerForm" name="registerForm" method="POST" th:action="@{/register}" th:object="${user}" onsubmit="return validateForm()">
+			<p th:text="${registeredSuccessfully}" th:unless="${registeredSuccessfully == null}">The user have been registered successfully.</p>
+		
+			<label for="username"> Username: </label>
+			<input type="text" name="username" th:field="*{username}">
+			<p th:text="${userExists}" th:unless="${userExists == null}">Username exists.</p> 
+			
+			<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Invalid username</p> <br> 
+			<label for="password">Password: </label> 
+			<input type="password" name="password" th:field="*{password}" required> <br> 
+			<br>
+			<select class="role" name="role">
+				<option th:each="role : ${roles}" th:value="${role.description}" th:text="${role.description}" th:required="true"></option>
+			</select> 
+			<br> <br>
+			<input type="submit" class="registerbtn" value="Register">
+		</form>
+	</div>
+
+<!-- script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script-->	
+<script type="text/javascript">
+	
+	function validateForm() {
+	    var username = document.forms["registerForm"]["username"].value;
+	    var password = document.forms["registerForm"]["password"].value;
+	    
+	    if (username == "" || password == "" ) {
+	        alert("Please fill in all fields.");
+	        return false;
+	    }
+	}
+
+</script>
+</body>
+</html>

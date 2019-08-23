@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Add New Abnormality</title>
+</head>
+<body>
+<h1>Add new case</h1>
+<form id="registerForm" name="addForm" method="POST" th:action="@{/add}" th:object="${abnormality}" onsubmit="return validateForm()">
+	Woman age
+	<input type="number" id="age" name="age" th:value="${newabnormality.age}"> 
+	<br><br>
+	Breast
+	<input type="text" id="breast" name="breast" > 
+	<br><br>
+	Breast Position
+	<select  >
+	<!-- th:field="${insertRequest.vendorId}" id="vendor"  -->
+		<option value="">Select breast position</option>
+		<option th:each="breastPosition :${breastPositions}" th:value="${breastPosition.id}"
+				th:text="${breastPosition.type}"></option>
+	</select>
+	<br><br>
+	Breast Position Description
+	<input type="text" id="breastPositionDescription" name="breastPositionDescription"> 
+	<br><br>
+	Breast Glandularity
+	<select >
+	<!-- th:field="${insertRequest.vendorId}" id="vendor"  -->
+		<option value="">Select breast glandularity</option>
+		<option th:each="breastGlandularity :${breastGlandularities}" th:value="${breastGlandularity.id}"
+				th:text="${breastGlandularity.type}"></option>
+	</select>
+	<br><br>
+	Breast Glandularity Description
+	<input type="text" id="breastGlandularityDescription" name="breastGlandularityDescription"> 
+	<br><br>
+	Breast Thickness
+	<input type="number" step="any" id="breastThickness" name="breastThickness">
+	<br><br>
+	Size
+	<input type="number" step="any" id="size" name="size">
+	<br><br>
+	Screen Detected
+	<br><br>
+  	<input type="radio" name="screenDetected" value="yes"> Yes
+  	<br> <br>
+  	<input type="radio" name="screenDetected" value="no"> No 
+  	<br> <br>
+	Palpable
+	<br><br>
+  	<input type="radio" name="palpable" value="yes"> Yes
+  	<br><br>
+  	<input type="radio" name="palpable" value="no"> No 
+  	<br><br>
+	Cancer Type
+	<select >
+	<!-- th:field="${insertRequest.vendorId}" id="vendor"  -->
+		<option value="">Select cancer type</option>
+		<option th:each="cancerType :${cancerTypes}" th:value="${cencerType.id}"
+				th:text="${cancerType.type}"></option>
+	</select>
+	<br><br>
+	Cancer Type Description
+	<input type="text" id="cancerTypeDescription" name="cancerTypeDescription"> 
+	<br><br>
+	Shape
+	<select>
+	<!-- th:field="${insertRequest.vendorId}" id="vendor"  -->
+		<option value="">Select shape</option>
+		<option th:each="shape :${shapes}" th:value="${shape.id}"
+				th:text="${shape.type}"></option>
+	</select>
+	<br><br>
+	Shape Description
+	<input type="text" id="shapeDescription" name="shapeDescription"> 
+	<br><br>
+	Modality
+	<select >
+	<!-- th:field="${insertRequest.vendorId}" id="vendor"  -->
+		<option value="">Select modality</option>
+		<option th:each="modality :${modalities}" th:value="${modality.id}"
+				th:text="${mdality.type}"></option>
+	</select>
+	<br><br>
+	Genetic Score
+	<select >
+	<!-- th:field="${insertRequest.vendorId}" id="vendor"  -->
+		<option value="">Select genetic score</option>
+		<option th:each="geneticScore :${geneticScores}" th:value="${geneticScore.id}"
+				th:text="${geneticScore.description}"></option>
+	</select>
+	<br><br>
+	Malignancy Score
+	<select  >
+	<!-- th:field="${insertRequest.vendorId}" id="vendor"  -->
+		<option value="">Select malignancy score</option>
+		<option th:each="malignancyScore :${malignancyScores}" th:value="${malignancyScore.id}"
+				th:text="${malignancyScore.description}"></option>
+	</select>
+	<br><br>
+		Vendor
+	<select >
+	<!-- th:field="${insertRequest.vendorId}" id="vendor"  -->
+		<option value="">Select vendor</option>
+		<option th:each="vendor :${vendors}" th:value="${vendor.id}"
+				th:text="${vendor.vendor}"></option>
+	</select>
+	<br><br>
+	<input type="submit" value="Save">
+</form>
+</body>
+</html>
