@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>User page</title>
+<link rel="stylesheet" href="/styles/bootstrap.css">
+</head>
+<body>
+<div class="container" style="display: center; margin-top: 100px;">
+<form method="get" th:action="@{/add}"> 
+	<input type="submit" class="btn btn-primary btn-lg btn-block" value="Add new abnormality" >
+</form>
+<br>
+<form method="get" th:action="@{/search}"> 
+	<input type="submit" class="btn btn-primary btn-lg btn-block" value="Search abnormality" >
+</form>
+<br>
+<form th:action="@{/logout}" method="post">
+	<input type="submit" value="Sign Out" class="btn btn-primary btn-lg btn-block" />
+</form>
+</div>
+</body>
+</html>

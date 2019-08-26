@@ -2,112 +2,123 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
-<title>Add New Abnormality</title>
+<title>Add new abnormality</title>
+<!-- link rel="stylesheet" href="/styles/bootstrap.css"-->
 </head>
 <body>
-<h1>Add new case</h1>
-<form id="registerForm" name="addForm" method="POST" th:action="@{/add}" th:object="${abnormality}" onsubmit="return validateForm()">
-	Woman age
-	<input type="number" id="age" name="age" th:value="${newabnormality.age}"> 
-	<br><br>
-	Breast
-	<input type="text" id="breast" name="breast" > 
-	<br><br>
-	Breast Position
-	<select  >
-	<!-- th:field="${insertRequest.vendorId}" id="vendor"  -->
-		<option value="">Select breast position</option>
-		<option th:each="breastPosition :${breastPositions}" th:value="${breastPosition.id}"
-				th:text="${breastPosition.type}"></option>
-	</select>
-	<br><br>
-	Breast Position Description
-	<input type="text" id="breastPositionDescription" name="breastPositionDescription"> 
-	<br><br>
-	Breast Glandularity
-	<select >
-	<!-- th:field="${insertRequest.vendorId}" id="vendor"  -->
-		<option value="">Select breast glandularity</option>
-		<option th:each="breastGlandularity :${breastGlandularities}" th:value="${breastGlandularity.id}"
-				th:text="${breastGlandularity.type}"></option>
-	</select>
-	<br><br>
-	Breast Glandularity Description
-	<input type="text" id="breastGlandularityDescription" name="breastGlandularityDescription"> 
-	<br><br>
-	Breast Thickness
-	<input type="number" step="any" id="breastThickness" name="breastThickness">
-	<br><br>
-	Size
-	<input type="number" step="any" id="size" name="size">
-	<br><br>
-	Screen Detected
-	<br><br>
-  	<input type="radio" name="screenDetected" value="yes"> Yes
-  	<br> <br>
-  	<input type="radio" name="screenDetected" value="no"> No 
-  	<br> <br>
-	Palpable
-	<br><br>
-  	<input type="radio" name="palpable" value="yes"> Yes
-  	<br><br>
-  	<input type="radio" name="palpable" value="no"> No 
-  	<br><br>
-	Cancer Type
-	<select >
-	<!-- th:field="${insertRequest.vendorId}" id="vendor"  -->
-		<option value="">Select cancer type</option>
-		<option th:each="cancerType :${cancerTypes}" th:value="${cencerType.id}"
-				th:text="${cancerType.type}"></option>
-	</select>
-	<br><br>
-	Cancer Type Description
-	<input type="text" id="cancerTypeDescription" name="cancerTypeDescription"> 
-	<br><br>
-	Shape
-	<select>
-	<!-- th:field="${insertRequest.vendorId}" id="vendor"  -->
-		<option value="">Select shape</option>
-		<option th:each="shape :${shapes}" th:value="${shape.id}"
-				th:text="${shape.type}"></option>
-	</select>
-	<br><br>
-	Shape Description
-	<input type="text" id="shapeDescription" name="shapeDescription"> 
-	<br><br>
-	Modality
-	<select >
-	<!-- th:field="${insertRequest.vendorId}" id="vendor"  -->
-		<option value="">Select modality</option>
-		<option th:each="modality :${modalities}" th:value="${modality.id}"
-				th:text="${mdality.type}"></option>
-	</select>
-	<br><br>
-	Genetic Score
-	<select >
-	<!-- th:field="${insertRequest.vendorId}" id="vendor"  -->
-		<option value="">Select genetic score</option>
-		<option th:each="geneticScore :${geneticScores}" th:value="${geneticScore.id}"
-				th:text="${geneticScore.description}"></option>
-	</select>
-	<br><br>
-	Malignancy Score
-	<select  >
-	<!-- th:field="${insertRequest.vendorId}" id="vendor"  -->
-		<option value="">Select malignancy score</option>
-		<option th:each="malignancyScore :${malignancyScores}" th:value="${malignancyScore.id}"
-				th:text="${malignancyScore.description}"></option>
-	</select>
-	<br><br>
-		Vendor
-	<select >
-	<!-- th:field="${insertRequest.vendorId}" id="vendor"  -->
-		<option value="">Select vendor</option>
-		<option th:each="vendor :${vendors}" th:value="${vendor.id}"
-				th:text="${vendor.vendor}"></option>
-	</select>
-	<br><br>
-	<input type="submit" value="Save">
+<div class="container" style="display: center;">
+<form class="form-group" id="addForm" name="addForm" method="POST" th:action="@{/add}" th:object="${abnormality}" onsubmit="return validateForm()">
+<fieldset>
+	<legend>Add new abnormality</legend>	
+	<div class="form-group">
+		<label for="age" > Woman age: </label>
+		<input type="number" class="form-control" id="age" name="age" th:field="*{age}" th:required="true"> <br>
+	</div>
+	<div class="form-group">
+		<label for="brast">Breast: </label> 
+		<input type="text" class="form-control" id="breast" name="breast" th:field="*{breast}" th:required="true">
+	</div> 
+	<div class="form-group">
+		<label for="breastPosition">Select breast position: </label> 
+		<select class="form-control" name="breastPosition">
+			<option th:each="breastPosition : ${breastPositions}" th:value="${breastPosition.type}" th:text="${breastPosition.type}"></option>
+		</select> 
+	</div>
+	<br>
+	<div class="form-group">
+		<label for="brastPositionDescription">Breast position description: </label> 
+		<input type="text" class="form-control" id="breastPositionDescription" name="breastPositionDescription" th:field="*{breastPositionDescription}" th:required="false">
+	</div> 
+	<div class="form-group">
+		<label for="breastGlandularity">Select breast glandularity: </label> 
+		<select class="form-control" name="breastGlandularity">
+			<option th:each="breastGlandularity : ${breastGlandularities}" th:value="${breastGlandularity.type}" th:text="${breastGlandularity.type}"></option>
+		</select> 
+	</div>
+	<br>
+	<div class="form-group">
+		<label for="brastGlandularityDescription">Breast glandularity description: </label> 
+		<input type="text" class="form-control" id="breastGlandularityDescription" name="breastGlandularityDescription" th:field="*{breastGlandularityDescription}" th:required="false">
+	</div> 
+	<div class="form-group">
+		<label for="brastThickness">Breast thickness: </label> 
+		<input type="number" class="form-control" id="breastThickness" name="breastThickness" th:field="*{breastThickness}" th:required="false">
+	</div> 
+	<div class="form-group">
+		<label for="size">Size: </label> 
+		<input type="number" class="form-control" id="size" name="size" th:field="*{size}" th:required="false">
+	</div>
+	<div class="form-group">
+		<label for="screenDetected">Screen detected: </label> 
+		<input type="radio" class="form-control" id="screenDetected" name="screenDetected" th:value="yes" th:field="*{screenDetected}" > Yes
+		<br>
+		<input type="radio" class="form-control" id="screenDetected" name="screenDetected" th:value="no" th:field="*{screenDetected}" > No
+		<br>	
+	</div>  
+	<div class="form-group">
+		<label for="palpable">Palpable: </label> 
+		<input type="radio" class="form-control" id="palpable" name="palpable" th:value="yes" th:field="*{palpable}" > Yes
+		<br>
+		<input type="radio" class="form-control" id="palpable" name="palpable" th:value="no" th:field="*{palpable}" > No
+		<br>	
+	</div> 
+	<div class="form-group">
+		<label for="cancerType">Select cancer type: </label> 
+		<select class="form-control" name="cancerType">
+			<option th:each="cancerType : ${cancerTypes}" th:value="${cancerType.type}" th:text="${cancerType.type}" th:required="true"></option>
+		</select> 
+	</div>
+	<br>
+	<div class="form-group">
+		<label for="cancerTypeDescription">Cancer type description: </label> 
+		<input type="text" class="form-control" id="cancerTypeDescription" name="cancerTypeDescription" th:field="*{cancerTypeDescription}" th:required="false">
+	</div> 
+	<div class="form-group">
+		<label for="shape">Select shape: </label> 
+		<select class="form-control" name="shape">
+			<option th:each="shape : ${shapes}" th:value="${shape.type}" th:text="${shape.type}" th:required="false"></option>
+		</select> 
+	</div>
+	<br>
+	<div class="form-group">
+		<label for="shapeDescription">Shape description: </label> 
+		<input type="text" class="form-control" id="shapeDescription" name="shapeDescription" th:field="*{shapeDescription}" th:required="false">
+	</div> 
+	<div class="form-group">
+		<label for="modality">Select modality: </label> 
+		<select class="form-control" name="modality">
+			<option th:each="modality : ${modalities}" th:value="${modality.type}" th:text="${modality.type}" th:required="false"></option>
+		</select> 
+	</div>
+	<br>
+	<div class="form-group">
+		<label for="geneticScore">Select genetic score: </label> 
+		<select class="form-control" name="geneticScore">
+			<option th:each="geneticScore : ${geneticScores}" th:value="${geneticScore.description}" th:text="${geneticScore.description}" th:required="false"></option>
+		</select> 
+	</div>
+	<br>
+	<div class="form-group">
+		<label for="malignancyScore">Select malignancy score: </label> 
+		<select class="form-control" name="malignancyScore">
+			<option th:each="malignancyScore : ${malignancyScores}" th:value="${malignancyScore.description}" th:text="${malignancyScore.description}" th:required="false"></option>
+		</select> 
+	</div>
+	<br>
+	<div class="form-group">
+		<label for="vendor">Select vendor: </label> 
+		<select class="form-control" name="vendor">
+			<option th:each="vendor : ${vendors}" th:value="${vendor.type}" th:text="${vendor.type}" th:required="false"></option>
+		</select> 
+	</div>
+	<div class="form-group">
+		<label for="image">Insert image: </label> 
+		<input type="file" class="form-control" id="image" name="image" th:field="*{image}" th:required="false">
+	</div> 
+	
+	<input type="submit" class="btn btn-primary btn-lg" value="Save">
+	</fieldset>
 </form>
+</div>
 </body>
 </html>

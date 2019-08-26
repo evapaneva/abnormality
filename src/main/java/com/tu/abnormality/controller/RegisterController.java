@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.tu.abnormality.converter.RegisterViewConverter;
 import com.tu.abnormality.model.entities.Role;
 import com.tu.abnormality.model.entities.User;
-import com.tu.abnormality.model.entities.Vendor;
 import com.tu.abnormality.model.views.RegisterView;
 import com.tu.abnormality.service.interfaces.RoleService;
 import com.tu.abnormality.services.UserServiceImpl;

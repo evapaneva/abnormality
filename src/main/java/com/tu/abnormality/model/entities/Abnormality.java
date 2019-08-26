@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -34,8 +35,8 @@ public class Abnormality {
 
 	private Float breastThickness;
 	private Float size;
-	private Boolean screenDetected;
-	private Boolean palpable;
+	private String screenDetected;
+	private String palpable;
 
 	@ManyToOne
 	@JoinColumn(name = "cancer_type_id")
@@ -63,6 +64,9 @@ public class Abnormality {
 	@JoinColumn(name = "vendor_id")
 	private Vendor vendor;
 
+	@Lob
+	private byte[] image;
+
 	public Abnormality() {
 
 	}
@@ -86,6 +90,7 @@ public class Abnormality {
 		this.geneticScore = abnormality.getGeneticScore();
 		this.malignancyScore = abnormality.getMalignancyScore();
 		this.vendor = abnormality.getVendor();
+		this.image = abnormality.image;
 	}
 
 	public Long getId() {
@@ -96,7 +101,7 @@ public class Abnormality {
 		this.id = id;
 	}
 
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
@@ -148,7 +153,7 @@ public class Abnormality {
 		return breastThickness;
 	}
 
-	public void setBreastThickness(float breastThickness) {
+	public void setBreastThickness(Float breastThickness) {
 		this.breastThickness = breastThickness;
 	}
 
@@ -156,23 +161,23 @@ public class Abnormality {
 		return size;
 	}
 
-	public void setSize(float size) {
+	public void setSize(Float size) {
 		this.size = size;
 	}
 
-	public Boolean isScreenDetected() {
+	public String getScreenDetected() {
 		return screenDetected;
 	}
 
-	public void setScreenDetected(boolean screenDetected) {
+	public void setScreenDetected(String screenDetected) {
 		this.screenDetected = screenDetected;
 	}
 
-	public Boolean isPalpable() {
+	public String getPalpable() {
 		return palpable;
 	}
 
-	public void setPalpable(boolean palpable) {
+	public void setPalpable(String palpable) {
 		this.palpable = palpable;
 	}
 
@@ -238,6 +243,14 @@ public class Abnormality {
 
 	public void setVendor(Vendor vendor) {
 		this.vendor = vendor;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 	@Override

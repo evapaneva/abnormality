@@ -4,59 +4,34 @@
 <meta charset="UTF-8">
 
 <title>Register page</title>
-<style>
-	label {
-		color: black;
-		float: left;
-	}
-
-	body
-	.container {
-		align-self: center;
-		padding: 10px;
-		margin: 50px;
-		background-image: url(bg.png);
-	}
-	
-	#registerForm {
-		padding: 5px;
-	}
-
-	.registerbtn {
-		align: center;
-		color: white;
-		padding: 16px 20px;
-		margin: 8px 0;
-		width: 250px;
-	}
-
-	body {
-	    text-align: center;
-	}
-	form {
-	    display: inline-block;
-	}
-</style>
+<link rel="stylesheet" href="/styles/bootstrap.css">
 </head>
 
 <body oncontextmenu="return false">
-	<div class="container">
-		<form id="registerForm" name="registerForm" method="POST" th:action="@{/register}" th:object="${user}" onsubmit="return validateForm()">
+	<div class="container" style="display: center; margin-top: 10px;">
+		<form  class="form-group" id="registerForm" name="registerForm" method="POST" th:action="@{/register}" th:object="${user}" onsubmit="return validateForm()">
+		<fieldset>
+		  <legend>Register new user</legend>			
 			<p th:text="${registeredSuccessfully}" th:unless="${registeredSuccessfully == null}">The user have been registered successfully.</p>
-		
+			<div class="form-group">
 			<label for="username"> Username: </label>
-			<input type="text" name="username" th:field="*{username}">
-			<p th:text="${userExists}" th:unless="${userExists == null}">Username exists.</p> 
-			
-			<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Invalid username</p> <br> 
+			<input type="text" class="form-control" id="username" name="username" th:field="*{username}">
+			<p th:text="${userExists}" th:unless="${userExists == null}">Username exists.</p>
+			</div>			
+			<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Invalid username</p>
+			<div class="form-group">
 			<label for="password">Password: </label> 
-			<input type="password" name="password" th:field="*{password}" required> <br> 
-			<br>
-			<select class="role" name="role">
+			<input type="password" class="form-control" id="password" name="password" th:field="*{password}" required>
+			</div> 
+			<div class="form-group">
+			<label for="role">Select role: </label> 
+			<select class="form-control" name="role">
 				<option th:each="role : ${roles}" th:value="${role.description}" th:text="${role.description}" th:required="true"></option>
 			</select> 
-			<br> <br>
-			<input type="submit" class="registerbtn" value="Register">
+			</div>
+			<br>
+			<input type="submit" class="btn btn-primary btn-lg" value="Register">
+			</fieldset>
 		</form>
 	</div>
 

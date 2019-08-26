@@ -30,4 +30,10 @@ public class RoleRepositoryImpl implements RoleRepository {
 		return entityManager.createQuery("SELECT role FROM Role role", Role.class).getResultList();
 	}
 
+	@Override
+	public String getRoleName(Role role) {
+		return (String) entityManager.createQuery("SELECT description FROM Role role WHERE role = :role")
+				.setParameter("role", role).getSingleResult();
+	}
+
 }

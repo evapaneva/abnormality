@@ -17,14 +17,14 @@ public class Vendor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String vendor;
+	private String type;
 	
 	public Vendor() {
 		
 	}
 	
-	public Vendor(final String vendor) {
-		this.vendor=vendor;
+	public Vendor(final String type) {
+		this.type=type;
 	}
 
 	public Long getId() {
@@ -35,12 +35,12 @@ public class Vendor {
 		this.id = id;
 	}
 
-	public String getVendor() {
-		return vendor;
+	public String getType() {
+		return type;
 	}
 
-	public void setVendor(String vendor) {
-		this.vendor = vendor;
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	@Override
@@ -53,7 +53,7 @@ public class Vendor {
 			return false;
 		}
 		final Vendor anotherObject = (Vendor) o;
-		if (!(this.vendor.equals(anotherObject.vendor))) {
+		if (!(this.type.equals(anotherObject.type))) {
 			return false;
 		}
 		return true;
@@ -62,6 +62,6 @@ public class Vendor {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(vendor);
+		return Objects.hash(type);
 	}
 }

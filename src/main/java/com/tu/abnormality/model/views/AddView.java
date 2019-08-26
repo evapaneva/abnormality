@@ -2,6 +2,7 @@ package com.tu.abnormality.model.views;
 
 import javax.validation.constraints.NotEmpty;
 
+
 public class AddView {
 	private Integer age;
 	private String breast;
@@ -24,6 +25,7 @@ public class AddView {
 	private String geneticScore;
 	private String malignancyScore;
 	private String vendor;
+	private byte image;
 
 	public Integer getAge() {
 		return age;
@@ -167,6 +169,14 @@ public class AddView {
 
 	public void setVendor(String vendor) {
 		this.vendor = vendor;
+	}
+
+	public byte getImage() {
+		return image;
+	}
+
+	public void setImage(byte image) {
+		this.image = image;
 	}
 
 }

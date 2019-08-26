@@ -3,14 +3,13 @@ package com.tu.abnormality.configuration;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -18,15 +17,20 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter  {
 	@Autowired
 	private DataSource dataSource;
+
+	private AuthenticationSuccessHandler authenticationSuccessHandler;
+	
+	  @Autowired
+	    public void WebSecurityConfig(AuthenticationSuccessHandler authenticationSuccessHandler) {
+	        this.authenticationSuccessHandler = authenticationSuccessHandler;
+	    }
 	
 	/**
 	 * Adds JDBC Authentication
 	 * @param auth
 	 * @throws Exception 
 	 */
-	
- 
-	/*@Autowired
+	@Autowired
 	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
 		  auth.jdbcAuthentication().dataSource(dataSource)
 			.usersByUsernameQuery(
@@ -34,7 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter  {
 			.authoritiesByUsernameQuery("SELECT username, role.description " + 
 					"FROM user " + 
 					"JOIN role ON user.role_id = role.id WHERE username=?");
-	}*/
+	}
 	
 	
 	/**
@@ -56,7 +60,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter  {
 	protected void configure(HttpSecurity http) throws Exception {		
 		http
 		.authorizeRequests()
-		.antMatchers("/login", "/register", "/admin", "/resources/public/**").permitAll()
+		.antMatchers("/login", "/styles/**", "/img/**").permitAll()
+		.antMatchers("/admin", "/register").hasAnyAuthority("Administrator")
+		.antMatchers("/user").hasAnyAuthority("User")
+		.antMatchers("/add", "/search").hasAnyAuthority("Administrator","User")
 		.anyRequest().authenticated()
 		.and()
 	.formLogin()
@@ -64,7 +71,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter  {
 		.permitAll()
 		.usernameParameter("username")
 		.passwordParameter("password")
-		.defaultSuccessUrl("/user/profile", true)
+		.successHandler(authenticationSuccessHandler)
 		.and()
 	.logout()
 		.permitAll();

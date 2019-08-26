@@ -6,6 +6,7 @@ import org.springframework.dao.annotation.PersistenceExceptionTranslationPostPro
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
+import com.tu.abnormality.converter.AddViewConverter;
 import com.tu.abnormality.converter.RegisterViewConverter;
 import com.tu.abnormality.repository.RoleRepositoryImpl;
 import com.tu.abnormality.repository.UserRepositoryImpl;
@@ -38,6 +39,11 @@ public class BeanConfiguration {
 	@Bean
 	public RegisterViewConverter userViewConverter() {
 		return new RegisterViewConverter();
+	}
+
+	@Bean
+	public AddViewConverter addViewConverter() {
+		return new AddViewConverter();
 	}
 
 	@Bean

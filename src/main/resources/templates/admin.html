@@ -2,21 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Admin page</title>
+<link rel="stylesheet" href="/styles/bootstrap.css">
 </head>
 <body>
+<div class="container" style="display: center; margin-top: 100px;">
 <form method="get" th:action="@{/register}"> 
-	<input type="submit" class="btn btn-default" value="Register" >
+	<input type="submit" class="btn btn-primary btn-lg btn-block" value="Register new user" >
 </form>
-<br><br>
+<br>
 <form method="get" th:action="@{/add}"> 
-	<input type="submit" class="btn btn-default" value="Add new abnormality" >
+	<input type="submit" class="btn btn-primary btn-lg btn-block" value="Add new abnormality" >
 </form>
+<br>
 <form method="get" th:action="@{/search}"> 
-	<input type="submit" class="btn btn-default" value="Search abnormality" >
+	<input type="submit" class="btn btn-primary btn-lg btn-block" value="Search abnormality" >
 </form>
+<br>
+<form th:action="@{/logout}" method="post">
+	<input type="submit" value="Sign Out" class="btn btn-primary btn-lg btn-block" />
+</form>
+</div>
 </body>
 </html>
